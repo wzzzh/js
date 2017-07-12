@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 200px;
+				height: 200px;
+				line-height: 200px;
+				border: 1px solid #000;
+				text-align: center;
+				font-size: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">1</div>
+		<script>
+			function addMouseWheel(init){
+				init.ele.onmousewheel = fn
+				init.ele.addEventListener('DOMMouseScroll',fn)
+				function fn(ev){
+					//true:上，false:下
+					var onOff = null;
+					if(ev.wheelDelta){
+						//其他
+						if(ev.wheelDelta>0){
+							onOff = true;
+						}else{
+							onOff = false;
+						}
+					}else{
+						//火狐
+						if(ev.detail<0){
+							onOff = true;
+						}else{
+							onOff = false;
+						}
+					}
+					if(onOff){
+						//上
+						typeof init.fnUp == 'function' && init.fnUp();
+					}else{
+						//下
+						typeof init.fnDown == 'function' && init.fnDown();
+					}
+					
+				}
+			}
+			var box = document.getElementById('box');
+			var n = 1;
+			addMouseWheel({
+				ele:box,
+				fnUp:function(){
+					n++;
+					box.innerHTML = n;
+				},
+				fnDown:function(){
+					n--;
+					box.innerHTML = n;
+				}
+			})
+		</script>
+	</body>
+</html>
