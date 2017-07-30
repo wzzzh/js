@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id = "box" style="width:800px;height: 600px;"></div>
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+		<script type="text/javascript">
+			
+			var mychart = echarts.init(document.getElementById('box'));
+			 var data = [
+        	{
+        		name:'衬衫',
+        		num:5
+        	},
+        	{
+        		name:'羊毛衫',
+        		num:20
+        	},
+        	{
+        		name:'雪纺衫',
+        		num:36
+        	},
+        	{
+        		name:'裤子',
+        		num:10
+        	},
+        	{
+        		name:'高跟鞋',
+        		num:10
+        	},
+        	{
+        		name:'袜子',
+        		num:20
+        	}
+        ];
+        var arrName = [];
+        for(var i =0;i<data.length;i++){
+        	arrName.push(data[i].name)
+        }
+        var arrNum = [];
+        for(var i = 0;i<data.length;i++){
+        	arrNum.push(data[i].num)
+        }
+			var option = {
+				title:{
+					text:'销量统计图'
+				},
+				xAxis:{
+					data:arrName
+				},
+				yAxis:{},
+				series:[{
+					name:'销量',
+					type:'bar',
+					data:arrNum
+				}]
+			}
+			mychart.setOption(option);
+		</script>
+	</body>
+</html>
